@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 import TopBar, { TopBarPropTypes } from "../../modules/topbar";
-import { ExpensesContext } from "@/contexts/expenses";
 import styles from "./expensecreate.module.scss";
 import { useRouter } from "next/navigation";
 import Button, { ButtonPropTypes } from "../../modules/button";
@@ -23,16 +22,15 @@ const ExpenseCreate = ({
   cancelButton,
   formFields,
 }: ExpenseCreatePropTypes) => {
-  const { expenses } = useContext(ExpensesContext);
   const {
     fieldsWithStateKeys,
     formData,
     formErrorData,
     changeHandler,
     submitting,
+    handleSubmission,
   } = useForm(formFields);
   const router = useRouter();
-  console.log(formData);
   const fieldsWithStateKeysAndOptions = fieldsWithStateKeys?.map((field) => {
     const { fieldId } = field;
     if (fieldId === "type") {
@@ -67,8 +65,12 @@ const ExpenseCreate = ({
         })}
       </div>
       <div className={styles.btnWrapper}>
-        <Button {...cancelButton} />
-        <Button {...addButton} />
+        <Button
+          {...{ ...cancelButton, clickHandler: () => router.push("/") }}
+        />
+        <Button
+          {...{ ...addButton, clickHandler: () => handleSubmission("create") }}
+        />
       </div>
     </div>
   );

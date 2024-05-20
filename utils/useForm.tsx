@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { v4 } from "uuid";
-import { ExpenseTypeEnum } from "./useExpense";
+import { Categories, Category, Expense, ExpenseTypeEnum } from "./useExpense";
+import { ExpensesContext } from "@/contexts/expenses";
+import { useRouter } from "next/navigation";
 
 enum AllowedFormFieldsTypes {
   select,
@@ -66,14 +68,6 @@ export const getInitialFormStates = (fields: FormFieldType[]) => {
   };
 };
 
-export const trimPayload = (payload: any) => {
-  const result: any = {};
-  for (const [key, value] of Object.entries(payload)) {
-    result[key] = typeof value === "string" ? value.trim() : value;
-  }
-  return result;
-};
-
 export const formHasError = (formErrorData: any) => {
   for (const errorData of Object.values(formErrorData)) {
     if (errorData) return true;
@@ -105,24 +99,74 @@ export const getFormErrors = (
   return newFormErrorData;
 };
 
+const getExpenseFromFormData = (formData: any): Expense => {
+  const { amount, category, date, type, description } = formData;
+  const newExpense: Expense = {
+    id: v4(),
+    category: Categories.find(({ name }) => name === category) as Category,
+    date,
+    type: ExpenseTypeEnum[type as keyof typeof ExpenseTypeEnum],
+    description,
+    amount: parseInt(amount, 10),
+  };
+  return newExpense;
+};
+
+const getFormDataFromExpense = (expense: Expense) => {
+  const { id, amount, category, date, type, description } = expense;
+  const newFormData = {
+    id,
+    category: category.name,
+    date,
+    type: type === ExpenseTypeEnum.CashIn ? "CashIn" : "CashOut",
+    description,
+    amount: amount.toString(),
+  };
+  return newFormData;
+};
+
 interface UseFormReturnPropTypes {
   formData: any;
   changeHandler: (val: any, key: any) => void;
   submitting: boolean;
   formErrorData: any;
-  handleSubmission: () => void;
+  handleSubmission: (action: string) => void;
   fieldsWithStateKeys: FormFieldType[];
+  fieldsWithStateKeysAndOptions: FormFieldType[];
 }
 
 export const useForm = (
-  formFields: FormFieldType[]
+  formFields: FormFieldType[],
+  currentExpense?: Expense
 ): UseFormReturnPropTypes => {
+  const { createExpense, updateExpense } = useContext(ExpensesContext);
   const { fieldsWithStateKeys, mandatoryFields } = getFormFields(formFields);
   const { INITIAL_FORM_STATE, INITIAL_FORM_ERROR_STATE } =
     getInitialFormStates(fieldsWithStateKeys);
-  const [formData, setFormData] = useState(INITIAL_FORM_STATE);
+
+  const [formData, setFormData] = useState(
+    currentExpense ? getFormDataFromExpense(currentExpense) : INITIAL_FORM_STATE
+  );
   const [formErrorData, setErrorFormData] = useState(INITIAL_FORM_ERROR_STATE);
   const [submitting, setSubmitting] = useState(false);
+
+  const fieldsWithStateKeysAndOptions = fieldsWithStateKeys?.map((field) => {
+    const { fieldId } = field;
+    if (fieldId === "type") {
+      field.fieldOptions = Object.keys(ExpenseTypeEnum).map((key) => ({
+        key,
+        value: ExpenseTypeEnum[key as keyof typeof ExpenseTypeEnum],
+      }));
+    }
+    if (fieldId === "category") {
+      field.fieldOptions = Categories.map(({ name }) => ({
+        key: name,
+        value: name,
+      }));
+    }
+    return field;
+  });
+  const router = useRouter();
 
   const changeHandler = (val: any, key: any) => {
     setFormData((prev: any) => ({
@@ -134,7 +178,7 @@ export const useForm = (
       setErrorFormData({ ...INITIAL_FORM_ERROR_STATE });
   };
 
-  const handleSubmission = async () => {
+  const handleSubmission = async (action: string) => {
     // already has validation error
     if (formHasError(formErrorData)) return;
     // create and check new validation error
@@ -148,7 +192,19 @@ export const useForm = (
       return setErrorFormData(newFormErrorData);
 
     setSubmitting(true);
-    console.log({ formData });
+    setTimeout(() => {
+      if (action === "create") {
+        createExpense(getExpenseFromFormData(formData));
+      }
+      if (action === "update") {
+        updateExpense({
+          ...getExpenseFromFormData(formData),
+          id: currentExpense?.id as string,
+        });
+      }
+      setSubmitting(false);
+      router.push("/");
+    }, 100);
   };
 
   return {
@@ -158,5 +214,6 @@ export const useForm = (
     formErrorData,
     handleSubmission,
     fieldsWithStateKeys,
+    fieldsWithStateKeysAndOptions,
   };
 };

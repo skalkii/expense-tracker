@@ -52,7 +52,7 @@
       "type": "textarea",
       "isFullWidth": true,
       "label": "Description",
-      "mandatory": true,
+      "mandatory": false,
       "placeHolder": "enter description here",
       "validationErrorMessage": "Description is required."
     }

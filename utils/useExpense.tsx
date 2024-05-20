@@ -16,7 +16,7 @@ export interface Expense {
   category: Category;
   date: Date;
   amount: number;
-  description: string;
+  description?: string;
   id: string;
 }
 
@@ -48,7 +48,7 @@ export const getMonthString = (date: Date): string => {
 
 export const getMonthlyExpenses = (expenses: Expense[]): Expense[][] => {
   const result = [];
-  if (!expenses.length) return [[]];
+  if (!expenses.length) return [];
   const sortedExpenses = [...expenses].sort(
     (a, b) => a.date.getTime() - b.date.getTime()
   );
