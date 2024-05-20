@@ -15,11 +15,9 @@ export interface TabsPropTypes {
 const Tabs = ({ tabs }: TabsPropTypes) => {
   const router = useRouter();
   const pathname = usePathname();
-  console.log(router, pathname);
   return (
     <div className={styles.container}>
       {tabs.map(({ href, title }, index) => {
-        console.log(pathname === href);
         return (
           <Link
             className={pathname === href ? styles.active : undefined}

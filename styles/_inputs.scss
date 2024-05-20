@@ -1,0 +1,79 @@
+@import "mixins";
+@import "variables";
+
+.input,
+.inputArea {
+  background: transparent;
+  border-radius: rem(8);
+  padding: rem(8 12);
+  font-size: rem(16);
+  line-height: rem(18);
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  &[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  &.transparent {
+    border-width: rem(1);
+    border-style: solid;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    color: inherit;
+  }
+
+  &::placeholder {
+    opacity: 0.75;
+  }
+
+  @include md {
+    padding: rem(12 16);
+    font-size: rem(18);
+    line-height: rem(20);
+  }
+}
+
+@mixin input-select-error {
+  font-size: rem(12);
+  line-height: rem(16);
+  position: absolute;
+  color: colorToHex("primary-red");
+  bottom: rem(-20);
+  left: 0;
+}
+
+.toggleWrap {
+  display: flex;
+  border-radius: rem(8);
+  overflow: hidden;
+}
+.toggle {
+  width: 50%;
+  text-align: center;
+  input {
+    display: none;
+  }
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(10);
+    cursor: pointer;
+    color: colorToHex("primary-white");
+  }
+  background-color: colorToHex("ternary-blue");
+  padding: rem(8 12);
+  @include md {
+    padding: rem(12 16);
+  }
+}
+.checked {
+  background-color: colorToHex("primary-blue") ;
+}

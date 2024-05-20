@@ -9,5 +9,52 @@
   "cancelButton": {
     "title": "Cancel",
     "type": "transparent"
-  }
+  },
+  "formFields": [
+    {
+      "fieldId": "type",
+      "type": "toggle",
+      "isFullWidth": false,
+      "label": "Type",
+      "mandatory": true
+    },
+    {
+      "fieldId": "category",
+      "type": "select",
+      "isFullWidth": false,
+      "label": "Category",
+      "mandatory": true,
+      "placeHolder": "categories",
+      "validationErrorMessage": "Category is required.",
+      "icon": "/assets/icons/triangleDown.svg"
+    },
+    {
+      "fieldId": "amount",
+      "type": "number",
+      "isFullWidth": false,
+      "label": "Amount",
+      "mandatory": true,
+      "placeHolder": "amount",
+      "validationErrorMessage": "Amount is required.",
+      "icon": "/assets/icons/yenIcon.svg"
+    },
+    {
+      "fieldId": "date",
+      "type": "date",
+      "isFullWidth": false,
+      "label": "Date",
+      "mandatory": true,
+      "placeHolder": "dd/mm/yyyy",
+      "validationErrorMessage": "Date is required."
+    },
+    {
+      "fieldId": "description",
+      "type": "textarea",
+      "isFullWidth": true,
+      "label": "Description",
+      "mandatory": true,
+      "placeHolder": "enter description here",
+      "validationErrorMessage": "Description is required."
+    }
+  ]
 }
