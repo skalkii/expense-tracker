@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useContext } from "react";
-import TopBar, { TopBarPropTypes } from "../topbar";
+import TopBar, { TopBarPropTypes } from "../../modules/topbar";
 import { ExpensesContext } from "@/contexts/expenses";
 import styles from "./expensecategories.module.scss";
-import Tabs, { TabType } from "../tabs";
+import Tabs, { TabType } from "../../modules/tabs";
 
 export interface ExpenseCategoriesPropTypes {
   topbar: TopBarPropTypes;

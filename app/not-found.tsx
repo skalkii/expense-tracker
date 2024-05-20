@@ -1,4 +1,4 @@
-import TopBar from "@/components/topbar";
+import TopBar from "@/modules/topbar";
 import { Roboto } from "next/font/google";
 import Link from "next/link";
 

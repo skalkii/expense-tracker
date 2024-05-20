@@ -1,20 +1,20 @@
 "use client";
 
 import React, { useContext } from "react";
-import TopBar, { TopBarPropTypes } from "../topbar";
+import TopBar, { TopBarPropTypes } from "../../modules/topbar";
+import { ExpensesContext } from "@/contexts/expenses";
 import {
   Expense,
   ExpenseTypeEnum,
-  ExpensesContext,
   getAmountString,
   getAmountStringByType,
   getMonthString,
   getMonthlyExpenses,
   getTotalExpense,
-} from "@/contexts/expenses";
+} from "@/utils/useExpense";
 import styles from "./expensetracking.module.scss";
 import classNames from "classnames";
-import Tabs, { TabType } from "../tabs";
+import Tabs, { TabType } from "../../modules/tabs";
 import { useRouter } from "next/navigation";
 
 export interface ExpenseTrackingPropTypes {
