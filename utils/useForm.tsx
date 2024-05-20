@@ -158,12 +158,7 @@ export const useForm = (
         value: ExpenseTypeEnum[key as keyof typeof ExpenseTypeEnum],
       }));
     }
-    if (fieldId === "category") {
-      field.fieldOptions = Categories.map(({ name }) => ({
-        key: name,
-        value: name,
-      }));
-    }
+
     return field;
   });
   const router = useRouter();

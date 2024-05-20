@@ -23,7 +23,7 @@ const ExpenseCreate = ({
   formFields,
 }: ExpenseCreatePropTypes) => {
   const {
-    fieldsWithStateKeys,
+    fieldsWithStateKeysAndOptions,
     formData,
     formErrorData,
     changeHandler,
@@ -31,22 +31,7 @@ const ExpenseCreate = ({
     handleSubmission,
   } = useForm(formFields);
   const router = useRouter();
-  const fieldsWithStateKeysAndOptions = fieldsWithStateKeys?.map((field) => {
-    const { fieldId } = field;
-    if (fieldId === "type") {
-      field.fieldOptions = Object.keys(ExpenseTypeEnum).map((key) => ({
-        key,
-        value: ExpenseTypeEnum[key as keyof typeof ExpenseTypeEnum],
-      }));
-    }
-    if (fieldId === "category") {
-      field.fieldOptions = Categories.map(({ name }) => ({
-        key: name,
-        value: name,
-      }));
-    }
-    return field;
-  });
+
   return (
     <div className={styles.pageWrapper}>
       <TopBar {...topbar} />

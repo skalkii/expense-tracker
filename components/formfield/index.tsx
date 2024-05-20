@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./formfield.module.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -9,6 +9,7 @@ import Dropdown from "@/modules/dropdown";
 import Image from "next/image";
 import InputArea from "@/modules/inputArea";
 import Toggle from "@/modules/toggle";
+import { ExpensesContext } from "@/contexts/expenses";
 
 type FormFieldProps = {
   field: FormFieldType;
@@ -29,6 +30,7 @@ const FormField: React.FC<FormFieldProps> = ({
   submitting,
   formErrorData,
 }) => {
+  const { categories } = useContext(ExpensesContext);
   const {
     fieldId,
     label,
@@ -87,7 +89,14 @@ const FormField: React.FC<FormFieldProps> = ({
             value={formData[fieldId]}
             disabled={submitting}
             onChange={(e) => changeHandler(e.target.value, fieldId)}
-            options={fieldOptions}
+            options={
+              fieldId === "category"
+                ? categories.map(({ name }) => ({
+                    key: name,
+                    value: name,
+                  }))
+                : fieldOptions
+            }
           />
           <Image
             className={styles.dropDownArrow}

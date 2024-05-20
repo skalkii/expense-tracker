@@ -22,7 +22,7 @@ const ExpenseUpdate = ({
   cancelButton,
   formFields,
 }: ExpenseUpdatePropTypes) => {
-  const { expenses } = useContext(ExpensesContext);
+  const { expenses, deleteExpense } = useContext(ExpensesContext);
   const router = useRouter();
   const { expenseId } = useParams();
   const currentExpense = expenses.find(({ id }) => expenseId === id);
@@ -37,7 +37,12 @@ const ExpenseUpdate = ({
   } = useForm(formFields, currentExpense);
   return (
     <div className={styles.pageWrapper}>
-      <TopBar {...{ ...topbar, buttonHandler: () => {} }} />
+      <TopBar
+        {...{
+          ...topbar,
+          buttonHandler: () => deleteExpense(expenseId as string),
+        }}
+      />
       <div className={styles.formFieldsWrapper}>
         {fieldsWithStateKeysAndOptions.map((fieldData, index) => {
           return (
