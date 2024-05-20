@@ -5,10 +5,13 @@
   cursor: pointer;
   border: none;
   text-align: center;
-  padding: rem(10 20);
+  font-size: rem(18);
+  padding: rem(8 22);
+  border-radius: rem(4);
 
   @include md {
-    padding: rem(15 22);
+    padding: rem(12 28);
+    font-size: rem(20);
   }
 
   &.solid {

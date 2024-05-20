@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ExpensesProvider from "@/contexts/expenses";
 import "../styles/global.css";
 import "../styles/_main.scss";
 
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={""}>{children}</body>
+      <body>
+        <ExpensesProvider>{children}</ExpensesProvider>
+      </body>
     </html>
   );
 }

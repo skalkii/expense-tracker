@@ -1,5 +1,32 @@
-body,
-h3 {
-  padding: 0;
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+p,
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+select {
+  border-radius: 0;
 }

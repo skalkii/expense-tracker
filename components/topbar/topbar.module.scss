@@ -10,11 +10,15 @@
   @include md {
     padding: rem(25);
   }
+  h3 {
+    font-size: rem(18);
+    color: colorToHex("secondary-blue")
+  }
 }
 
 .btnwrap {
   position: absolute;
-  top: rem(10);
+  top: rem(8);
   right: rem(15);
   @include md {
     top: rem(15);

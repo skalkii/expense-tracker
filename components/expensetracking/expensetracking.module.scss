@@ -1,0 +1,54 @@
+@import "../../styles//main";
+
+.monthlyContainer {
+  display: flex;
+  flex-direction: column;
+  gap:rem(25);
+  padding: rem(15);
+  @include md {
+    padding: rem(25);
+  }
+}
+
+.monthlyCard {
+  display: flex;
+  flex-direction: column;
+  padding: rem(5) 0;
+}
+
+.cashIn {
+  color: colorToHex("primary-green");
+  border-color: colorToHex("primary-green") !important;
+}
+
+.cashOut {
+  color: colorToHex("primary-blue");
+  border-color: colorToHex("primary-blue") !important;
+}
+
+.cardHeader {
+  display: flex;
+  border-bottom: rem(3) solid transparent;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    font-size: rem(16);
+    padding-top: rem(10);
+    padding-bottom: rem(6);
+    &:last-child {
+      font-size: rem(22);
+
+    }
+  }
+}
+
+.cardItem {
+  display: flex;
+  border-bottom: rem(1) solid transparent;
+  align-items: center;
+  justify-content: space-between;
+  p {
+    font-size: rem(18);
+    padding: rem(15 10 5 10);
+  }
+}
