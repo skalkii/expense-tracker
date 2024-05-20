@@ -1,0 +1,13 @@
+
+@import "../../styles//main";
+
+.categoryList {
+  padding: rem(15 25);
+}
+
+.categorySingle {
+  border-bottom: rem(1) solid colorToHex("primary-blue");
+  color:  colorToHex("primary-blue");
+  padding: rem(8 12);
+  margin: rem(15 0);
+}

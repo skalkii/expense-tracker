@@ -7,13 +7,22 @@ import {
   ExpensesDummy,
 } from "@/utils/useExpense";
 import { useRouter } from "next/navigation";
-import { FC, ReactNode, createContext, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useState,
+} from "react";
 
 export interface ExpensesContextType {
   expenses: Expense[];
   createExpense: (expense: Expense) => void;
   updateExpense: (expense: Expense) => void;
   deleteExpense: (expenseId: string) => void;
+  setCategories: Dispatch<SetStateAction<Category[]>>;
+  categories: Category[];
 }
 
 export const ExpensesContext = createContext<ExpensesContextType>({
@@ -21,6 +30,8 @@ export const ExpensesContext = createContext<ExpensesContextType>({
   createExpense: () => {},
   updateExpense: () => {},
   deleteExpense: () => {},
+  setCategories: () => {},
+  categories: [],
 });
 
 const ExpensesProvider: FC<{ children: ReactNode }> = ({ children }) => {
@@ -54,7 +65,14 @@ const ExpensesProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
   return (
     <ExpensesContext.Provider
-      value={{ expenses, createExpense, deleteExpense, updateExpense }}
+      value={{
+        expenses,
+        createExpense,
+        deleteExpense,
+        updateExpense,
+        categories,
+        setCategories,
+      }}
     >
       {children}
     </ExpensesContext.Provider>

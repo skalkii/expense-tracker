@@ -1,25 +1,24 @@
 "use client";
 
-import React, { useContext } from "react";
+import React from "react";
 import TopBar, { TopBarPropTypes } from "../../modules/topbar";
-import { ExpensesContext } from "@/contexts/expenses";
 import styles from "./expensecategories.module.scss";
 import Tabs, { TabType } from "../../modules/tabs";
+import DragNDropCategories from "../categories";
 
 export interface ExpenseCategoriesPropTypes {
   topbar: TopBarPropTypes;
   tabs: TabType[];
 }
 
-const ExpenseTracking = ({ topbar, tabs }: ExpenseCategoriesPropTypes) => {
-  const { expenses } = useContext(ExpensesContext);
+const ExpenseCategories = ({ topbar, tabs }: ExpenseCategoriesPropTypes) => {
   return (
     <div className={styles.pageWrapper}>
       <TopBar {...topbar} />
-      Categories
+      <DragNDropCategories />
       <Tabs tabs={tabs} />
     </div>
   );
 };
 
-export default ExpenseTracking;
+export default ExpenseCategories;

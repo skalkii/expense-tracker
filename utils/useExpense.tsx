@@ -9,6 +9,7 @@ export interface Category {
   name: string;
   isMain: boolean;
   order: number;
+  id: string;
 }
 
 export interface Expense {
@@ -69,10 +70,10 @@ export const getMonthlyExpenses = (expenses: Expense[]): Expense[][] => {
 };
 
 export const Categories: Category[] = [
-  { isMain: true, order: 1, name: "Food" },
-  { isMain: true, order: 2, name: "Transportation" },
-  { isMain: true, order: 3, name: "Work" },
-  { isMain: false, order: 4, name: "Traveling" },
+  { isMain: true, order: 1, name: "Food", id: "11" },
+  { isMain: true, order: 2, name: "Transportation", id: "22" },
+  { isMain: true, order: 3, name: "Work", id: "33" },
+  { isMain: false, order: 4, name: "Traveling", id: "44" },
 ];
 
 export const ExpensesDummy: Expense[] = [
