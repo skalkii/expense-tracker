@@ -1,0 +1,27 @@
+@import "../../styles//main";
+
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.btnWrapper {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  justify-content: space-around;
+  padding: rem(15);
+  button {
+    width: 45%;
+  }
+  @include md {
+    padding: rem(25);
+    gap: rem(40);
+    justify-content: center;
+    button {
+      width: rem(300);
+    }
+  }
+}
+

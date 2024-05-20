@@ -69,7 +69,7 @@ const ExpenseTracking = ({ topbar, tabs }: ExpenseTrackingPropTypes) => {
   const router = useRouter();
   return (
     <div className={styles.pageWrapper}>
-      <TopBar {...{ ...topbar, buttonHandler: () => router.push("/add") }} />
+      <TopBar {...{ ...topbar, buttonHandler: () => router.push("/create") }} />
       <div className={styles.monthlyContainer}>
         {monthlyExpenses.map((monthExpense, index) => {
           return (

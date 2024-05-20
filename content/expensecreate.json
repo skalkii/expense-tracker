@@ -1,0 +1,13 @@
+{
+  "topbar": {
+    "title": "Add Expense"
+  },
+  "addButton": {
+    "title": "Add",
+    "type": "solid"
+  },
+  "cancelButton": {
+    "title": "Cancel",
+    "type": "transparent"
+  }
+}
