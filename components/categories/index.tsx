@@ -7,6 +7,7 @@ import { DragDropContext, Draggable, Droppable } from "@hello-pangea/dnd";
 import Button from "@/modules/button";
 import Image from "next/image";
 import { Category } from "@/utils/useExpense";
+import ConfirmPopup from "@/modules/modal";
 
 export interface DragNDropCategoriesPropTypes {}
 
@@ -14,12 +15,12 @@ const SingleCategory = ({
   category,
   index,
   updateCategory,
-  deleteCategory,
+  setShowModal,
 }: {
   category: Category;
   index: number;
   updateCategory: Function;
-  deleteCategory: Function;
+  setShowModal: Function;
 }) => {
   const [name, setName] = useState(category.name);
   return (
@@ -45,7 +46,7 @@ const SingleCategory = ({
                 alt={"delete-icon"}
                 width={16}
                 height={16}
-                onClick={() => deleteCategory(category.id)}
+                onClick={() => setShowModal(category.id)}
               />
             )}
           </div>
@@ -64,7 +65,7 @@ const DragNDropCategories = ({}: DragNDropCategoriesPropTypes) => {
     updateCategory,
   } = useContext(ExpensesContext);
   const [newCategory, setNewCategory] = useState("");
-  console.log(categories);
+  const [showModal, setShowModal] = useState("");
 
   const onDragEnd = async (result: any) => {
     if (!result?.destination) return;
@@ -100,9 +101,9 @@ const DragNDropCategories = ({}: DragNDropCategoriesPropTypes) => {
                 return (
                   <SingleCategory
                     updateCategory={updateCategory}
-                    deleteCategory={deleteCategory}
                     category={category}
                     index={index}
+                    setShowModal={setShowModal}
                   />
                 );
               })}
@@ -127,6 +128,10 @@ const DragNDropCategories = ({}: DragNDropCategoriesPropTypes) => {
           type="solid"
         />
       </div>
+      {}
+      {showModal ? (
+        <ConfirmPopup setShowModal={setShowModal} categoryId={showModal} />
+      ) : null}
     </>
   );
 };
