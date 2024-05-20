@@ -52,7 +52,7 @@ const ExpenseMonthlyCard = ({
               styles.cardItem,
               type === ExpenseTypeEnum.CashOut ? styles.cashOut : styles.cashIn
             )}
-            onClick={() => router.push("/edit/" + id)}
+            onClick={() => router.push("/update/" + id)}
           >
             <p>{category.name}</p>
             <p>{getAmountStringByType(type, amount)}</p>

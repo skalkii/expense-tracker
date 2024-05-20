@@ -1,0 +1,9 @@
+{
+  "topbar": {
+    "title": "Category List"
+  },
+  "tabs": [
+    { "title": "Expense", "href": "/" },
+    { "title": "Category", "href": "/categories" }
+  ]
+}

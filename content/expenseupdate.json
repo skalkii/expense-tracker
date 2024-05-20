@@ -1,0 +1,17 @@
+{
+  "topbar": {
+    "title": "Edit Expense",
+    "button": {
+      "title": "Remove",
+      "type": "solid"
+    }
+  },
+  "updateButton": {
+    "title": "Update",
+    "type": "solid"
+  },
+  "cancelButton": {
+    "title": "Cancel",
+    "type": "transparent"
+  }
+}
