@@ -14,9 +14,12 @@ import {
 } from "@/contexts/expenses";
 import styles from "./expensetracking.module.scss";
 import classNames from "classnames";
+import Tabs, { TabType } from "../tabs";
+import { useRouter } from "next/navigation";
 
 export interface ExpenseTrackingPropTypes {
   topbar: TopBarPropTypes;
+  tabs: TabType[];
 }
 
 interface ExpenseMonthlyCardPropTypes {
@@ -29,6 +32,7 @@ const ExpenseMonthlyCard = ({
   expenses,
 }: ExpenseMonthlyCardPropTypes) => {
   const totalExpense = getTotalExpense(expenses);
+  const router = useRouter();
   return (
     <div className={styles.monthlyCard}>
       <div
@@ -40,7 +44,7 @@ const ExpenseMonthlyCard = ({
         <p>{month}</p>
         <p>{getAmountString(totalExpense)}</p>
       </div>
-      {expenses.map(({ amount, category, type }, index) => {
+      {expenses.map(({ id, amount, category, type }, index) => {
         return (
           <div
             key={`exp${index}`}
@@ -48,6 +52,7 @@ const ExpenseMonthlyCard = ({
               styles.cardItem,
               type === ExpenseTypeEnum.CashOut ? styles.cashOut : styles.cashIn
             )}
+            onClick={() => router.push("/edit/" + id)}
           >
             <p>{category.name}</p>
             <p>{getAmountStringByType(type, amount)}</p>
@@ -58,13 +63,13 @@ const ExpenseMonthlyCard = ({
   );
 };
 
-const ExpenseTracking = ({ topbar }: ExpenseTrackingPropTypes) => {
+const ExpenseTracking = ({ topbar, tabs }: ExpenseTrackingPropTypes) => {
   const { expenses } = useContext(ExpensesContext);
   const monthlyExpenses = getMonthlyExpenses(expenses);
-  console;
+  const router = useRouter();
   return (
-    <div>
-      <TopBar {...topbar} />
+    <div className={styles.pageWrapper}>
+      <TopBar {...{ ...topbar, buttonHandler: () => router.push("/add") }} />
       <div className={styles.monthlyContainer}>
         {monthlyExpenses.map((monthExpense, index) => {
           return (
@@ -76,6 +81,7 @@ const ExpenseTracking = ({ topbar }: ExpenseTrackingPropTypes) => {
           );
         })}
       </div>
+      <Tabs tabs={tabs} />
     </div>
   );
 };

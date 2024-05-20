@@ -1,6 +1,7 @@
 "use client";
 
 import { FC, ReactNode, createContext, useState } from "react";
+import { v4 } from "uuid";
 
 export enum ExpenseTypeEnum {
   CashIn = "Cash In",
@@ -19,6 +20,7 @@ export interface Expense {
   date: Date;
   amount: number;
   description: string;
+  id: string;
 }
 
 export const getTotalExpense = (expenses: Expense[]): number => {
@@ -83,6 +85,7 @@ const ExpensesDummy: Expense[] = [
     date: new Date("2023-09-10"),
     amount: 2000,
     description: "bought something",
+    id: v4(),
   },
   {
     type: ExpenseTypeEnum.CashIn,
@@ -90,6 +93,7 @@ const ExpensesDummy: Expense[] = [
     date: new Date("2023-07-10"),
     amount: 2900,
     description: "bought something",
+    id: v4(),
   },
   {
     type: ExpenseTypeEnum.CashIn,
@@ -97,6 +101,7 @@ const ExpensesDummy: Expense[] = [
     date: new Date("2023-07-10"),
     amount: 7000,
     description: "bought something",
+    id: v4(),
   },
   {
     type: ExpenseTypeEnum.CashIn,
@@ -104,6 +109,7 @@ const ExpensesDummy: Expense[] = [
     date: new Date("2023-08-10"),
     amount: 2050,
     description: "bought something",
+    id: v4(),
   },
   {
     type: ExpenseTypeEnum.CashIn,
@@ -111,6 +117,7 @@ const ExpensesDummy: Expense[] = [
     date: new Date("2023-08-10"),
     amount: 2300,
     description: "bought something",
+    id: v4(),
   },
   {
     type: ExpenseTypeEnum.CashOut,
@@ -118,6 +125,7 @@ const ExpensesDummy: Expense[] = [
     date: new Date("2023-09-10"),
     amount: 3000,
     description: "bought something",
+    id: v4(),
   },
 ];
 

@@ -11,7 +11,7 @@ enum BUTTON_TYPE {
 export interface ButtonPropTypes {
   title: string;
   type: keyof typeof BUTTON_TYPE;
-  clickHandler?: React.MouseEventHandler<HTMLButtonElement>;
+  clickHandler?: Function;
   disabled?: boolean;
 }
 
@@ -25,7 +25,7 @@ const Button = ({
     <button
       className={classNames("button", type)}
       disabled={disabled}
-      onClick={clickHandler}
+      onClick={() => clickHandler()}
     >
       {title}
     </button>

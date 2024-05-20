@@ -1,12 +1,14 @@
 @import "../../styles//main";
 
 .container {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: colorToHex("ternary-blue");
   padding: rem(15);
-  position: relative;
+  position: sticky;
+  top: 0;
   @include md {
     padding: rem(25);
   }

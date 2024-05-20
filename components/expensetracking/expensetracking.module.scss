@@ -1,11 +1,19 @@
 @import "../../styles//main";
 
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .monthlyContainer {
   display: flex;
   flex-direction: column;
   gap:rem(25);
   padding: rem(15);
+  flex-wrap: wrap;
   @include md {
+    flex-direction: row;
+    justify-content: space-around;
     padding: rem(25);
   }
 }
@@ -14,6 +22,9 @@
   display: flex;
   flex-direction: column;
   padding: rem(5) 0;
+  @include md {
+    width: 40%;
+  }
 }
 
 .cashIn {
@@ -47,6 +58,7 @@
   border-bottom: rem(1) solid transparent;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
   p {
     font-size: rem(18);
     padding: rem(15 10 5 10);

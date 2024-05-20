@@ -1,0 +1,19 @@
+@import "../../styles//main";
+
+.container {
+  width: 100%;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  a {
+    width: 50%;
+    padding: rem(20);
+    text-align: center;
+    background-color: colorToHex("ternary-blue");
+    color: colorToHex("primary-white");
+    cursor: pointer;
+  }
+  .active {
+    background-color: colorToHex("primary-blue");
+  }
+}

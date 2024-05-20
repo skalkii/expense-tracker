@@ -19,6 +19,9 @@ body {
   margin: 0;
   padding: 0;
 }
+main {
+  min-height: 100vh;
+}
 
 p,
 h3 {
@@ -29,4 +32,8 @@ h3 {
 input,
 select {
   border-radius: 0;
+}
+
+a {
+  text-decoration: none;
 }

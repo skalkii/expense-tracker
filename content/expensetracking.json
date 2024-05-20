@@ -5,5 +5,9 @@
       "title": "Add",
       "type": "solid"
     }
-  }
+  },
+  "tabs": [
+    { "title": "Expense", "href": "/" },
+    { "title": "Category", "href": "/categories" }
+  ]
 }
