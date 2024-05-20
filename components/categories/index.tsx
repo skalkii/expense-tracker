@@ -104,6 +104,7 @@ const DragNDropCategories = ({}: DragNDropCategoriesPropTypes) => {
                     category={category}
                     index={index}
                     setShowModal={setShowModal}
+                    key={category.id}
                   />
                 );
               })}
