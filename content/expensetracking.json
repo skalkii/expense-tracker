@@ -1,0 +1,9 @@
+{
+  "topbar": {
+    "title": "Expense Tracking",
+    "button": {
+      "title": "Add",
+      "type": "solid"
+    }
+  }
+}

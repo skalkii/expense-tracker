@@ -1,0 +1,13 @@
+$colors: (
+  "primary-blue": #4a96f2,
+  "secondary-blue": #1b4378,
+  "ternary-blue": #c5d6ef,
+  "primary-black": #202020,
+  "primary-white": #ffffff,
+  "primary-green": #5ca025,
+  "primary-red": red,
+) !default;
+
+@function colorToHex($colorname) {
+  @return map-get($colors,$colorname);
+}

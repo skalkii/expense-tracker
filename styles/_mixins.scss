@@ -1,0 +1,106 @@
+/// Mixin to manage responsive design
+/// @param {String} $breakpoint
+/// @require $breakpoints-min
+/// @require $breakpoints-max
+
+$baseFont: 16;
+
+@function rem($pxWidths) {
+  $remValues: null;
+
+  @each $pxValue in $pxWidths {
+    $remValues: append($remValues, $pxValue / $baseFont + rem);
+  }
+  @return $remValues;
+}
+
+$breakpoints-min: (
+  "sm-min": 320px,
+  "md-min": 768px,
+  "lg-min": 1024px,
+  "xl-min": 1280px,
+) !default;
+
+$breakpoints-max: (
+  "xs-max": 319px,
+  "sm-max": 767px,
+  "md-max": 1023px,
+  "lg-max": 1279px,
+  "xl-max": 1390px,
+) !default;
+
+$screen-xs-max: 350px;
+$screen-sm-max: 575px;
+$screen-sm-min: 576px;
+$screen-md-max: 767px;
+$screen-md-min: 768px;
+$screen-lg-max: 991px;
+$screen-lg-min: 992px;
+
+@mixin xs-max {
+  @media (max-width: #{$screen-xs-max}) {
+    @content;
+  }
+}
+@mixin sm {
+  @media (min-width: #{$screen-sm-min}) {
+    @content;
+  }
+}
+@mixin sm-max {
+  @media (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: #{$screen-md-min}) {
+    @content;
+  }
+}
+@mixin md-max {
+  @media (max-width: #{$screen-md-max}) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: #{$screen-lg-min}) {
+    @content;
+  }
+}
+@mixin lg-max {
+  @media (max-width: #{$screen-lg-max}) {
+    @content;
+  }
+}
+
+@mixin breakpoint($breakpoint) {
+  @if map-has-key($breakpoints-max, $breakpoint) {
+    @media (max-width: map-get($breakpoints-max, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @if map-has-key($breakpoints-min, $breakpoint) {
+      @media (min-width: map-get($breakpoints-min, $breakpoint)) {
+        @content;
+      }
+    }
+    @else {
+      @warn "Breakpoint not found!";
+    }
+  }
+}
+
+@mixin breakpoint-max-width($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin breakpoint-min-width($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+
+

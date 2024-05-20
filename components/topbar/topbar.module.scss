@@ -1,0 +1,23 @@
+@import "../../styles//main";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: colorToHex("ternary-blue");
+  padding: rem(15);
+  position: relative;
+  @include md {
+    padding: rem(25);
+  }
+}
+
+.btnwrap {
+  position: absolute;
+  top: rem(10);
+  right: rem(15);
+  @include md {
+    top: rem(15);
+    right: rem(25);
+  }
+}

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import "../styles/global.css";
+import "../styles/_main.scss";
 
 export const metadata: Metadata = {
   title: "Expense Tracking Web Application",
